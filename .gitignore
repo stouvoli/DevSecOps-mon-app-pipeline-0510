@@ -1,0 +1,12 @@
+# Dépendances
+node_modules
+
+# Données des services Docker
+jenkins_home
+sonarqube_data
+
+# Fichiers de log
+npm-debug.log
+
+# Fichiers de sortie d'ateliers
+grep-output
