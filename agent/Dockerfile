@@ -1,4 +1,5 @@
 FROM node:18-bullseye
+
 USER root
 RUN apt-get update && \
     apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release && \
@@ -9,4 +10,5 @@ RUN apt-get update && \
       $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && \
     apt-get update && \
     apt-get install -y docker-ce-cli
+
 USER node

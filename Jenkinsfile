@@ -16,16 +16,22 @@ pipeline {
                 sh 'npm audit --audit-level=high'
             }
         }
+
+
         stage('Analyse SAST (SonarQube)') {
             environment {
+                // Demande à Jenkins de fournir l'outil 'SonarScanner'
                 scannerHome = tool 'SonarScanner'
             }
             steps {
+                // Utilise la connexion 'SonarQube' configurée dans Jenkins
                 withSonarQubeEnv('SonarQube') {
+                    // Exécute le scanner fourni par Jenkins
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
+
         stage('Vérification Quality Gate') {
             steps {
                 timeout(time: 1, unit: 'HOURS') {
