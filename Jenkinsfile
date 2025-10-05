@@ -2,8 +2,12 @@ pipeline {
     agent {
         dockerfile {
             dir 'agent'
+            additionalBuildArgs '--no-cache'
+            // Ajout de cette ligne pour connecter l'agent au bon réseau
+            args '--network mon-app-pipeline_default' 
         }
     }
+    
     stages {
         stage('Checkout') {
             steps {
