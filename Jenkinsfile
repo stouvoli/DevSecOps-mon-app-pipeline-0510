@@ -17,9 +17,12 @@ pipeline {
             }
         }
         stage('Analyse SAST (SonarQube)') {
+            environment {
+                scannerHome = tool 'SonarScanner'
+            }
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh "sonar-scanner"
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
